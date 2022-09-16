@@ -6,6 +6,8 @@ const app = express();
 
 // Set View Engine to jsx
 app.set('view engine', 'jsx');
+// Create Engine
+app.engine('jsx', require('express-react-views').createEngine());
 
 // Set views
 // app.set('views', './views') // didn't test
