@@ -23,6 +23,13 @@ app.get('/', function(req, res){
     res.render('Index.jsx', {pokemon: pokemon})
 })
 
+// Show
+app.get('/pokemon/:id', function(req, res) {
+    // res.render('Show', {fruits: fruits[req.params.indexOfFruitsArray]});
+    res.render('Show.jsx', {pokemon: pokemon[req.params.id]});
+
+})
+
 // Listen
 app.listen(3000, () => {
     console.log("Listening port 3000");
