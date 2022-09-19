@@ -5,7 +5,7 @@ class Show extends React.Component {
         // Put props obj to destructure
         const { pokemon } = this.props;
 
-        // Return
+        // Return. Must have parent element or <> </>
         return (
         <div>
             <h1>Gotta Catch 'Em All</h1>
