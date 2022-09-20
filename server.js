@@ -14,7 +14,8 @@ app.engine('jsx', require('express-react-views').createEngine());
 //     next();
 // })
 // Parses url encoded data to be used within application
-// app.use(express.urlencoded({extended:false}));
+// Important for Create Route
+app.use(express.urlencoded({extended:false})); // Per Scholas has it on extended: true
 
 
 // Set views
@@ -33,7 +34,14 @@ app.get('/pokemon', function(req, res){
 
 // New
 app.get('/pokemon/new', function(req, res){
-    res.render('New.jsx')
+    res.render('New.jsx');
+})
+
+// Create
+app.post('/pokemon', (req, res)=>{
+    // res.send(req.body); // test to see if it works
+    pokemon.push(req.body);
+    res.redirect('/pokemon');
 })
 
 // Show
