@@ -9,6 +9,7 @@ require('dotenv').config(); // Per Scholas notes said to put it at top of the fi
 
 // Connect Express to Mongo
 const mongoose = require('mongoose');
+const Pokemon = require('./models/pokemon.js');
 
 // Set View Engine to jsx // Middleware
 app.set('view engine', 'jsx');
@@ -24,6 +25,7 @@ app.engine('jsx', require('express-react-views').createEngine());
 app.use(express.urlencoded({extended:false})); // Per Scholas has it on extended: true
 
 
+
 // Set views
 app.set('views', './views') // doesn't work without this
 
@@ -35,7 +37,12 @@ app.get('/pokemon', function(req, res){
     // res.send('<h1>Hello Pokemon!</h1>'); // without jsx
     // res.render('Index.jsx');
     // res.send(fruits);
-    res.render('Index.jsx', {pokemon: pokemon})
+    // res.render('Index.jsx', {pokemon: pokemon}) // without MongDB
+    Pokemon.find({}, (error, allPokemon)=>{
+        res.render('Index.jsx', {
+            pokemon: allPokemon
+        });
+    })
 })
 
 // New
@@ -46,14 +53,20 @@ app.get('/pokemon/new', function(req, res){
 // Create
 app.post('/pokemon', (req, res)=>{
     // res.send(req.body); // test to see if it works
-    pokemon.push(req.body);
-    res.redirect('/pokemon');
+    // pokemon.push(req.body); // without MongoDB
+    Pokemon.create(req.body, (error, createdPokemon)=>{
+        res.send(createdPokemon);
+    });
+    // res.redirect('/pokemon');
 })
 
 // Show
 app.get('/pokemon/:id', function(req, res) {
     // res.render('Show', {fruits: fruits[req.params.indexOfFruitsArray]});
-    res.render('Show.jsx', {pokemon: pokemon[req.params.id]});
+    // res.render('Show.jsx', {pokemon: pokemon[req.params.id]}); // without MongoDB
+    Pokemon.findById(req.params.id, (err, foundPokemon)=>{
+        res.send(foundPokemon);
+    })
 
 })
 

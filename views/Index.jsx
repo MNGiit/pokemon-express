@@ -13,7 +13,7 @@ class Index extends React.Component {
                 {pokemon.map((poke, i) => {
                     return (
                         // should put key={i} for convention
-                        <li key={i}><a href={`/pokemon/${i}`}>{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</a></li>
+                        <li key={i}><a href={`/pokemon/${id}`}>{poke.name.charAt(0).toUpperCase() + poke.name.slice(1)}</a></li>
                     )
                 })}
             </ul>
