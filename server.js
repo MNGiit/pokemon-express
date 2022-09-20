@@ -31,6 +31,11 @@ app.get('/pokemon', function(req, res){
     res.render('Index.jsx', {pokemon: pokemon})
 })
 
+// New
+app.get('/pokemon/new', function(req, res){
+    res.render('New.jsx')
+})
+
 // Show
 app.get('/pokemon/:id', function(req, res) {
     // res.render('Show', {fruits: fruits[req.params.indexOfFruitsArray]});
