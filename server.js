@@ -4,6 +4,12 @@ const express = require('express');
 // Create Express app
 const app = express();
 
+// Require dotenv
+require('dotenv').config(); // Per Scholas notes said to put it at top of the file, but so far no errors
+
+// Connect Express to Mongo
+const mongoose = require('mongoose');
+
 // Set View Engine to jsx // Middleware
 app.set('view engine', 'jsx');
 // Create Engine
@@ -50,6 +56,17 @@ app.get('/pokemon/:id', function(req, res) {
     res.render('Show.jsx', {pokemon: pokemon[req.params.id]});
 
 })
+
+// Edit
+
+// Delete
+
+
+// Connecting with Mongoose
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connection.once('open', ()=> {
+    console.log('connected to mongo');
+});
 
 // Listen
 app.listen(3000, () => {
