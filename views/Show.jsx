@@ -11,7 +11,9 @@ class Show extends React.Component {
             <h1>Gotta Catch 'Em All</h1>
             <h2>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
             <img src={pokemon.img + ".jpg"}></img>
-                <a href="/pokemon">back</a>
+            <a href={`/pokemon/${pokemon.id}/edit`}>Edit</a>
+            <a href="/pokemon">back</a>
+            <a href={`/pokemon/${pokemon.id}/delete`}>Delete</a>
     
             
         </div>
